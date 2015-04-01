@@ -9,7 +9,9 @@
 			debug 			: false,
 			units			: 'px',
 			showShadow 		: true,
+			useMaskShadow 	: true,
 			shadow 			: '<div class="slmp-shadow"><span class="slmp-s t"></span><span class="slmp-s b"></span><span class="slmp-s l"></span><span class="slmp-s r"></span></div>',
+			mask 			: '<img class="slmp-thumbnail-mask">',
 			grid 			: '<div class="slmp-grid"></div>',
 			offsetX 		: 0,
 			offsetY 		: 0,
@@ -23,18 +25,18 @@
 		var settings = $.extend({}, defaults, options);
 
 		// slideMap elements
-        var $wrapper 		= this,
-        	$slide 			= $wrapper.find('.slmp-slide'),
-        	$image 			= $slide.find('.slmp-image'),
-        	grid 			= { image:{ natural:{}, scaled:{} }, map:{} },
-        	$captions		= $slide.find('.slmp-caption'),
-        	$map 			= $wrapper.find('.slmp-map'),
-        	shadow 			= {},
-        	$areas 			= $map.find('.slmp-area'),
-        	$thumbnail		= $map.find('.slmp-thumbnail'),
-        	controls 		= {},
-        	timer 			= undefined;
-
+		var $wrapper 		= this,
+			$slide 			= $wrapper.find('.slmp-slide'),
+			$image 			= $slide.find('.slmp-image'),
+			grid 			= { image:{ natural:{}, scaled:{} }, map:{} },
+			$captions		= $slide.find('.slmp-caption'),
+			$map 			= $wrapper.find('.slmp-map'),
+			shadow 			= {},
+			$areas 			= $map.find('.slmp-area'),
+			$thumbnail		= $map.find('.slmp-thumbnail'),
+			$mask 			= $(settings.mask),
+			controls 		= {},
+			timer 			= undefined;
 
 
 		var init = function() {
@@ -106,47 +108,76 @@
 
 		var initShadow = function() {
 			
-			shadow.wrapper 		= $(settings.shadow);
-			shadow.sTop 		= shadow.wrapper.find('.slmp-s.t'); 
-			shadow.sBottom 		= shadow.wrapper.find('.slmp-s.b'); 
-			shadow.sLeft 		= shadow.wrapper.find('.slmp-s.l'); 
-			shadow.sRight 		= shadow.wrapper.find('.slmp-s.r'); 
+			if(settings.useMaskShadow){
+				
+				$mask.attr('src', $thumbnail.attr('src'));
+				
+				$thumbnail.after($mask);
 
-			$map.prepend(shadow.wrapper);
+			} else {
+				
+				shadow.wrapper 		= $(settings.shadow);
+				shadow.sTop 		= shadow.wrapper.find('.slmp-s.t'); 
+				shadow.sBottom 		= shadow.wrapper.find('.slmp-s.b'); 
+				shadow.sLeft 		= shadow.wrapper.find('.slmp-s.l'); 
+				shadow.sRight 		= shadow.wrapper.find('.slmp-s.r'); 
 
+				$map.prepend(shadow.wrapper);
+			}
+			
+			
 			var activeArea 	= $areas.filter('.active').first();
-			moveShadow(activeArea.data('coords').split(','));
+			
+			if(activeArea.length > 0){
+				moveShadow(activeArea.data('coords').split(','));
+			}
 		};
 
 		var moveShadow = function(coords) {
+
+			if(settings.useMaskShadow){
+				var top 	= parseInt(coords[1]),
+				right 	= parseInt(coords[0])+parseInt(coords[2]),
+				bottom 	= parseInt(coords[1])+parseInt(coords[3]),
+				left 	= parseInt(coords[0]);
 			
-			shadow.sTop.css({
-				left: coords[0]+settings.units,
-				// top: 0,
-				width: coords[2]+settings.units,
-				height: coords[1]+settings.units
-			});
+				$mask.css('clip', 'rect('+top+'px, '+right+'px, '+bottom+'px, '+left+'px)');
 
-			shadow.sBottom.css({
-				left: coords[0]+settings.units,
-				// bottom: 0,
-				width: coords[2]+settings.units,
-				height: $map.height() - coords[1] - coords[3]+settings.units,
-			});
+				// $mask.animate({
+				// 	clip: 'rect('+top+'px, '+right+'px, '+bottom+'px, '+left+'px)'
+				// });
 
-			shadow.sLeft.css({
-				// left: 0+settings.units,
-				// top: 0+settings.units,
-				width: coords[0]+settings.units,
-				// height: '100%'
-			});
+			} else {
+				
+				shadow.sTop.css({
+					left: coords[0]+settings.units,
+					// top: 0,
+					width: coords[2]+settings.units,
+					height: coords[1]+settings.units
+				});
 
-			shadow.sRight.css({
-				// left: 0,
-				// top: 0,
-				width: $map.width() - coords[0] - coords[2] +settings.units,
-				// height: '100%'
-			});
+				shadow.sBottom.css({
+					left: coords[0]+settings.units,
+					// bottom: 0,
+					width: coords[2]+settings.units,
+					height: $map.height() - coords[1] - coords[3]+settings.units,
+				});
+
+				shadow.sLeft.css({
+					// left: 0+settings.units,
+					// top: 0+settings.units,
+					width: coords[0]+settings.units,
+					// height: '100%'
+				});
+
+				shadow.sRight.css({
+					// left: 0,
+					// top: 0,
+					width: $map.width() - coords[0] - coords[2] +settings.units,
+					// height: '100%'
+				});
+			}
+							
 		};
 
 		var initSlide = function() {
@@ -178,7 +209,9 @@
 				});
 
 				var activeArea 	= $areas.filter('.active').first();
-				moveImage(activeArea.data('coords').split(','));
+				if(activeArea.length > 0){
+					moveImage(activeArea.data('coords').split(','));
+				}
 
 			}).each(function () {
 				if (this.complete) $(this).load();
@@ -347,6 +380,45 @@
 
 		init();
 
+	};
+
+	$.fx.step.clip = function (fx) {
+		console.log(fx);
+		if (fx.pos === 0) {
+			
+			var clipRegex = /rect\(([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)\)/;
+			
+			var clipCss = ($(fx.elem).css('clip') || '').replace(/,/g, ' ');
+			
+			fx.start = clipRegex.exec(clipCss);
+			
+			if (typeof fx.end === 'string') {
+				fx.end = clipRegex.exec(fx.end.replace(/,/g, ' '));
+			}
+
+		}
+
+		if (fx.start && fx.end) {
+			var sarr 		= new Array(), 
+				earr 		= new Array(), 
+				spos 		= fx.start.length, 
+				epos 		= fx.end.length,
+				emOffset 	= fx.start[ss + 1] == 'em' ? (parseInt($(fx.elem).css('fontSize')) * 1.333 * parseInt(fx.start[ss])) : 1;
+				
+				for (var ss = 1; ss < spos; ss += 2) { 
+					sarr.push(parseInt(emOffset * fx.start[ss])); 
+				}
+				
+				for (var es = 1; es < epos; es += 2) { 
+					earr.push(parseInt(emOffset * fx.end[es])); 
+				}
+				
+				fx.elem.style.clip = 'rect(' +
+					parseInt((fx.pos * (earr[0] - sarr[0])) + sarr[0]) + 'px ' +
+					parseInt((fx.pos * (earr[1] - sarr[1])) + sarr[1]) + 'px ' +
+					parseInt((fx.pos * (earr[2] - sarr[2])) + sarr[2]) + 'px ' +
+					parseInt((fx.pos * (earr[3] - sarr[3])) + sarr[3]) + 'px)';
+		}
 	};
 
 }( jQuery ));

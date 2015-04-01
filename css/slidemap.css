@@ -6,11 +6,23 @@
 }
 .slmp-slidemap .slmp-map {
   position: relative;
+  background-color: #ffffff;
 }
-.slmp-slidemap .slmp-thumbnail {
+.slmp-slidemap .slmp-thumbnail,
+.slmp-slidemap .slmp-thumbnail-mask {
   display: block;
   max-width: 100%;
   height: auto;
+}
+.slmp-slidemap .slmp-thumbnail {
+  opacity: 0.75;
+}
+.slmp-slidemap .slmp-thumbnail-mask {
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip: rect(0px, 0px, 0px, 0px);
 }
 .slmp-slidemap .slmp-shadow {
   position: absolute;
@@ -48,6 +60,9 @@
   right: 0;
   height: 100%;
   width: 100%;
+}
+.slmp-slidemap .slmp-shadow + .slmp-thumbnail {
+  opacity: 1;
 }
 .slmp-slidemap .slmp-area {
   display: block;
