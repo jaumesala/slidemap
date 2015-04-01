@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+		<meta name="viewport" content="width=960">
+		<title>Demos - SlideMap</title>
+		<meta name="description" content="Some demos of slidemap">
+		
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="../css/slidemap.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<div class="page-header">
+							<h1>SlideMap demos <small>fixed width examples</small></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<body id="body">
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>Horizontal slidemap</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							A very simple example. Click the areas on the map to move the slide.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<div id="slidemap-horizontal" class="slmp-slidemap">
+							<div class="slmp-slide">
+								<img class="slmp-image" src="img/super-mario-bros-1-1-simple.png"  width="3392" height="232" />
+							</div>
+							<div class="slmp-map">
+								<img class="slmp-thumbnail" src="img/super-mario-bros-1-1-simple.png" width="3392" height="232">
+
+								<a data-coords="0,0,230,64,0" class="slmp-area active" href="#"></a>
+	 							<a data-coords="229,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="458,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="687,0,253,64,0" class="slmp-area" href="#"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>3D slidemap</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							More elavorated example. Multiple areas with diferent horizonta and vertical position. Plus, to add more focus on the region, we can specify a zoom with the fifth parameter of the <code>data-coords</code>. The unit of this value are pixels and a positive value means zoom in while a negative value means zoom out.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<div id="slidemap-3d" class="slmp-slidemap">
+							<div class="slmp-slide">
+								<img class="slmp-image" src="img/sonic-the-hedgehog-ghz-1.png"  width="10240" height="1280" />
+							</div>
+							<div class="slmp-map">
+								<img class="slmp-thumbnail" src="img/sonic-the-hedgehog-ghz-1.png" width="310240" height="1280">
+
+								<a data-coords="0,45,110,50,600" class="slmp-area active" href="#"></a>
+								<a data-coords="109,45,110,50,600" class="slmp-area" href="#"></a>
+								<a data-coords="218,45,100,50,600" class="slmp-area" href="#"></a>
+								
+								<a data-coords="317,30,100,65,500" class="slmp-area" href="#"></a>
+								
+								<a data-coords="416,15,120,74,500" class="slmp-area" href="#"></a>
+								
+								<a data-coords="535,0,130,64,470" class="slmp-area" href="#"></a>
+								<a data-coords="535,63,100,45,470" class="slmp-area" href="#"></a>
+								
+								<a data-coords="634,63,100,45,450" class="slmp-area" href="#"></a>
+								
+								<a data-coords="733,63,180,45,450" class="slmp-area" href="#"></a>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+
+			<!-- <div class="container">
+				<div class="col-xs-24">
+					<h2>slidemap with captions</h2>
+				</div>
+				<div class="col-xs-24">
+					<p>
+						You can also add a caption to each area. A caption is a div element where you can place whatever you want to show for an specific action. 
+					</p>
+				</div>
+				<div class="col-xs-24">
+					<div id="slidemap-captions" class="slmp-slidemap row">
+						<div class="col-xs-12 custom-left">
+							<div class="row">
+								<div class="col-xs-24">
+									<div class="row">
+										<div class="slmp-map">
+											<img class="slmp-thumbnail" src="img/gtav-map-satellite.jpg" width="6100" height="8100">
+											
+											<a data-coords="105,530,80,80,800" class="slmp-area active" href="#"></a>
+											<a data-coords="188,514,18,18,900" class="slmp-area" href="#"></a>
+											<a data-coords="188,540,90,60,760" class="slmp-area" href="#"></a>
+
+
+										</div>	
+									</div>
+								</div>
+								<div class="col-xs-24">
+									<p class="h3 text-primary">Grand Theft Auto <br /><small>San Andreas</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 custom-right">
+							<div class="row">
+								<div class="slmp-slide">
+									<img class="slmp-image" src="img/gtav-map-satellite.jpg"  width="6100" height="8100" />
+									<div class="slmp-caption active"></div>
+									<div class="slmp-caption"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+
+		</body>
+		
+		<footer id="footer">
+			<div class="container">
+				<div class="col-xs-24">
+					<hr />
+				</div>
+				<div class="col-xs-24">
+					<div class="text-center">Jaume Sala</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="../js/slidemap.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

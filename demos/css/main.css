@@ -1,0 +1,13 @@
+#footer {
+  padding: 40px 0;
+}
+.slmp-slidemap {
+  background-color: #222222;
+  margin-bottom: 40px;
+}
+#slidemap-3d .slmp-slide {
+  height: 320px;
+}
+#slidemap-captions .slmp-slide {
+  height: 720px;
+}
