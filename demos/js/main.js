@@ -7,12 +7,13 @@ $(function(){
 
 	$("#slidemap-3d").slideMap({
 		debug 			: true,
-		useMaskShadow 	: false,
+		useMaskShadow 	: true,
 	});
 
-	// $("#slidemap-captions").slideMap({
-	// 	debug 			: false,
-	// 	showShadow 		: true,
-	// });
+	$("#slidemap-captions").slideMap({
+		debug 			: false,
+		showShadow 		: true,
+		showControls 	: true,
+	});
 
 });

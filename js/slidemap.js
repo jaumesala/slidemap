@@ -125,9 +125,12 @@
 				$map.prepend(shadow.wrapper);
 			}
 			
-
+			
 			var activeArea 	= $areas.filter('.active').first();
-			moveShadow(activeArea.data('coords').split(','));
+			
+			if(activeArea.length > 0){
+				moveShadow(activeArea.data('coords').split(','));
+			}
 		};
 
 		var moveShadow = function(coords) {
@@ -206,7 +209,9 @@
 				});
 
 				var activeArea 	= $areas.filter('.active').first();
-				moveImage(activeArea.data('coords').split(','));
+				if(activeArea.length > 0){
+					moveImage(activeArea.data('coords').split(','));
+				}
 
 			}).each(function () {
 				if (this.complete) $(this).load();
