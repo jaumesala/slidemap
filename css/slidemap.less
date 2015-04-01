@@ -29,12 +29,26 @@
 	
 	.slmp-map{
 		position: relative;
+		background-color: @white;
 	}
 
-	.slmp-thumbnail{
+	.slmp-thumbnail,
+	.slmp-thumbnail-mask{
 		display: block;
 		max-width: 100%;
 		height: auto;
+	}
+
+	.slmp-thumbnail{
+		opacity: 0.75;
+	}
+
+	.slmp-thumbnail-mask{
+		.trans();
+		position: absolute;
+		top: 0;
+		left: 0;
+		clip: rect(0px, 0px, 0px, 0px);
 	}
 
 	.slmp-shadow{
@@ -75,6 +89,10 @@
 				width: 100%;
 			}
 		}
+	}
+
+	.slmp-shadow + .slmp-thumbnail{
+		opacity: 1;
 	}
 
 	.slmp-area{

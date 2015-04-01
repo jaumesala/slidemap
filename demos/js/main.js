@@ -7,6 +7,7 @@ $(function(){
 
 	$("#slidemap-3d").slideMap({
 		debug 			: true,
+		useMaskShadow 	: false,
 	});
 
 	// $("#slidemap-captions").slideMap({
