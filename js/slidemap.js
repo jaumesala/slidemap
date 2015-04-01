@@ -39,10 +39,9 @@
 			timer 			= undefined;
 
 
+		// init all the components
 		var init = function() {
-			// test
-			// $wrapper.css('background-color', '#000');
-
+			
 			initMap();
 			initSlide();
 
@@ -72,17 +71,23 @@
 			}
 		};
 
+		// init Map components
 		var initMap = function(){
 			
 			initAreas();
 			if(settings.showShadow) initShadow();
+
 		};
 
+		// init Areas
 		var initAreas = function() {
 			
 			$areas.each(function(){
+				
+				// get coords from data-coords attribute
 				var coords = $(this).data("coords").split(',');
 				
+				// set the css position of the element
 				$(this).css({
 					left: coords[0]+settings.units, 		//x
 					top: coords[1]+settings.units,			//y
@@ -92,22 +97,39 @@
 
 			});
 
+			// bind click
 			$map.on("click", ".slmp-area", function(e){
-				var coords = $(this).data("coords").split(',');
 				
 				e.preventDefault();
-				$areas.not($(this)).removeClass('active');
-				$(this).addClass('active');
-					
+				
+				var coords = $(this).data("coords").split(',');
+				
+				setActiveArea(this);
+				
+				// trigger actions
 				if(settings.showShadow) moveShadow(coords);
 				moveImage(coords);
-				toggleCaptions($areas.index($(this)));	
+				toggleCaptions($areas.index($(this)));
+
 			});
 
 		};
 
+		var getActiveArea = function() {
+			var aa = $areas.filter('.active').first();
+
+			return (aa.length > 0 ) ? aa : undefined;
+		};
+
+		var setActiveArea = function(elem) {
+			$areas.not($(elem)).removeClass('active');
+			$(elem).addClass('active');
+		};
+
+		//init shadow
 		var initShadow = function() {
 			
+			// check if we have to use the css clip property or not
 			if(settings.useMaskShadow){
 				
 				$mask.attr('src', $thumbnail.attr('src'));
@@ -125,10 +147,10 @@
 				$map.prepend(shadow.wrapper);
 			}
 			
-			
-			var activeArea 	= $areas.filter('.active').first();
-			
-			if(activeArea.length > 0){
+			//move shadow to active area
+			var activeArea = getActiveArea();
+
+			if(activeArea){
 				moveShadow(activeArea.data('coords').split(','));
 			}
 		};
@@ -136,6 +158,7 @@
 		var moveShadow = function(coords) {
 
 			if(settings.useMaskShadow){
+				
 				var top 	= parseInt(coords[1]),
 				right 	= parseInt(coords[0])+parseInt(coords[2]),
 				bottom 	= parseInt(coords[1])+parseInt(coords[3]),
@@ -208,8 +231,8 @@
 					height: grid.image.scaled.height
 				});
 
-				var activeArea 	= $areas.filter('.active').first();
-				if(activeArea.length > 0){
+				var activeArea 	= getActiveArea();
+				if(activeArea){
 					moveImage(activeArea.data('coords').split(','));
 				}
 
@@ -296,7 +319,7 @@
 		};
 
 		var initCaptions = function(){
-			var activeArea 	= $areas.filter('.active').first();
+			var activeArea 	= getActiveArea();
 			toggleCaptions(activeArea.index($areas));	
 		};
 
