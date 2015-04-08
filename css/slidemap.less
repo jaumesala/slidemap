@@ -20,6 +20,9 @@
 
 .slmp-slidemap{
 	
+	*{
+		box-sizing: border-box;
+	}
 	.slmp-slide{
 		min-height: 200px;
 		overflow: hidden;
@@ -138,20 +141,145 @@
 		position: absolute;
 		bottom: 10px;
 		left: 15px;
+		z-index: 100;
+		
+		.slmp-btn{
+			width: 37px;
+			padding: 5px 10px;
+			font-size: 12px;
+			font-weight: normal;
+			line-height: 20px;
+			position: relative;
+			float: left;
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			touch-action: manipulation;
+			cursor: pointer;
+			background-image: none;
+			white-space: nowrap;
+			user-select: none;
+			
+			&:hover{
+				text-decoration: none;
+			}
+		}
 
-		.slmp-play-pause{
+		.slmp-btn-next,
+		.slmp-btn-prev,
+		.slmp-btn-play-pause > .play,
+		.slmp-btn-play-pause > .pause{
+			color: transparent;
+
+			&:before,
+			&:after{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				content: "";
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				margin-top: -6px;
+				border: 6px solid @black;
+				border-top-color: transparent;
+				border-bottom-color: transparent;
+				text-decoration: none;
+			}
+
+		}
+
+		.slmp-btn-next:hover,
+		.slmp-btn-prev:hover,
+		.slmp-btn-play-pause:hover > .play,
+		.slmp-btn-play-pause:hover > .pause{
+
+			&:before,
+			&:after{
+				border-right-color: @gray-light;
+				border-left-color: @gray-light;
+				text-decoration: none;
+			}
+		}
+
+		.slmp-btn-next{
+			&:before,
+			&:hover:before,
+			&:after,
+			&:hover:after{
+				border-right-color: transparent;
+			}
+
+			&:before{
+				margin-left: -6px;
+			}
+
+			&:after{
+				margin-left: -1px;
+				
+			}
+		}
+		
+		.slmp-btn-prev{
+			
+			&:before,
+			&:hover:before,
+			&:after,
+			&:hover:after{
+				border-left-color: transparent;
+			}
+
+			&:before{
+				margin-left: -11px;
+			}
+
+			&:after{
+				margin-left: -6px;
+				
+			}
+		}
+		
+		.slmp-btn-play-pause{
+			
+			&:hover,
+			&:active{
+				text-decoration: none;
+			}
+
 			.play{
 				display: inline;
+
+				&:before{
+					width: 10px;
+					border-left-width: 10px;
+					margin-left: -5px;
+					border-right-width: 0;
+				}
+
+				&:after{
+					content: none;
+				}
 			}
 			.pause{
 				display: none;
+
+				&:before,
+				&:after{
+					border-width: 0 0 0 4px; 
+				}
+
+				&:before{
+					margin-left: -5px;
+				}
+
+				&:after{
+					margin-left: 0;
+				}
 			}
 		}
-		.slmp-next{}
-		.slmp-prev{}
 
 		&.play{
-			.slmp-play-pause{
+			.slmp-btn-play-pause{
 				.play{
 					display: none;
 				}

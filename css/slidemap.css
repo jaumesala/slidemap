@@ -1,3 +1,6 @@
+.slmp-slidemap * {
+  box-sizing: border-box;
+}
 .slmp-slidemap .slmp-slide {
   min-height: 200px;
   overflow: hidden;
@@ -99,16 +102,123 @@
   position: absolute;
   bottom: 10px;
   left: 15px;
+  z-index: 100;
 }
-.slmp-slidemap .slmp-controls .slmp-play-pause .play {
+.slmp-slidemap .slmp-controls .slmp-btn {
+  width: 37px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 20px;
+  position: relative;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn:hover {
+  text-decoration: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next,
+.slmp-slidemap .slmp-controls .slmp-btn-prev,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .play,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .pause {
+  color: transparent;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next:before,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:before,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .play:before,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .pause:before,
+.slmp-slidemap .slmp-controls .slmp-btn-next:after,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:after,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .play:after,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause > .pause:after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border: 6px solid #000000;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  text-decoration: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next:hover:before,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:hover:before,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:hover > .play:before,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:hover > .pause:before,
+.slmp-slidemap .slmp-controls .slmp-btn-next:hover:after,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:hover:after,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:hover > .play:after,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:hover > .pause:after {
+  border-right-color: #777777;
+  border-left-color: #777777;
+  text-decoration: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next:before,
+.slmp-slidemap .slmp-controls .slmp-btn-next:hover:before,
+.slmp-slidemap .slmp-controls .slmp-btn-next:after,
+.slmp-slidemap .slmp-controls .slmp-btn-next:hover:after {
+  border-right-color: transparent;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next:before {
+  margin-left: -6px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-next:after {
+  margin-left: -1px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-prev:before,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:hover:before,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:after,
+.slmp-slidemap .slmp-controls .slmp-btn-prev:hover:after {
+  border-left-color: transparent;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-prev:before {
+  margin-left: -11px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-prev:after {
+  margin-left: -6px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:hover,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause:active {
+  text-decoration: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .play {
   display: inline;
 }
-.slmp-slidemap .slmp-controls .slmp-play-pause .pause {
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .play:before {
+  width: 10px;
+  border-left-width: 10px;
+  margin-left: -5px;
+  border-right-width: 0;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .play:after {
+  content: none;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .pause {
   display: none;
 }
-.slmp-slidemap .slmp-controls.play .slmp-play-pause .play {
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .pause:before,
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .pause:after {
+  border-width: 0 0 0 4px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .pause:before {
+  margin-left: -5px;
+}
+.slmp-slidemap .slmp-controls .slmp-btn-play-pause .pause:after {
+  margin-left: 0;
+}
+.slmp-slidemap .slmp-controls.play .slmp-btn-play-pause .play {
   display: none;
 }
-.slmp-slidemap .slmp-controls.play .slmp-play-pause .pause {
+.slmp-slidemap .slmp-controls.play .slmp-btn-play-pause .pause {
   display: inline;
 }

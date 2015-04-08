@@ -2,12 +2,27 @@
   padding: 40px 0;
 }
 .slmp-slidemap {
-  background-color: #222222;
+  background-color: #eeeeee;
   margin-bottom: 40px;
 }
 #slidemap-3d .slmp-slide {
   height: 320px;
 }
+#slidemap-captions .custom-left {
+  float: left;
+  width: 48%;
+}
+#slidemap-captions .custom-right {
+  float: left;
+  width: 52%;
+}
 #slidemap-captions .slmp-slide {
   height: 720px;
+}
+#slidemap-captions .slmp-controls {
+  bottom: 50px;
+  left: 15px;
+}
+#slidemap-captions .title {
+  margin-left: 15px;
 }

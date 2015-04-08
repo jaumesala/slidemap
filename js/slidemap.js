@@ -16,7 +16,7 @@
 			offsetX 		: 0,
 			offsetY 		: 0,
 			showControls 	: false,
-			controls 		: '<div class="slmp-controls btn-group"><a data-action="prev" class="btn btn-sm btn-link slmp-c slmp-prev" href="#"><i class="fa fa-fw fa-backward"></i></a><a data-action="play-pause" class="btn btn-sm btn-link slmp-c slmp-play-pause" href="#"><span class="play"><i class="fa fa-fw fa-play"></i></span><span class="pause"><i class="fa fa-fw fa-pause"></span></i></a><a data-action="next" class="btn btn-sm btn-link slmp-c slmp-next" href="#"><i class="fa fa-fw fa-forward"></i></a></div>',
+			controls 		: '<div class="slmp-controls"><a data-action="prev" class="slmp-btn slmp-btn-prev" href="#">←</a><a data-action="play-pause" class="slmp-btn slmp-btn-play-pause" href="#"><span class="play">►</span><span class="pause">■</span></a><a data-action="next" class="slmp-btn slmp-btn-next" href="#">→</a></div>',
 			animSpeed 		: 4000, 	// delay between transitions
 			automatic 		: false, 	// enable/disable automatic slide rotation
 		};
@@ -320,7 +320,9 @@
 
 		var initCaptions = function(){
 			var activeArea 	= getActiveArea();
-			toggleCaptions(activeArea.index($areas));	
+			if(activeArea){
+				toggleCaptions(activeArea.index($areas));
+			}
 		};
 
 		var toggleCaptions = function(index) {
@@ -330,15 +332,15 @@
 
 		var initControls = function() {
 			controls.wrapper 	= $(settings.controls);
-			controls.cPlayPause = controls.wrapper.find('.slmp-play-pause'); 
-			controls.cNext 		= controls.wrapper.find('.slmp-next'); 
-			controls.cPrev 		= controls.wrapper.find('.slmp-prev'); 
+			controls.cPlayPause = controls.wrapper.find('.slmp-btn-play-pause'); 
+			controls.cNext 		= controls.wrapper.find('.slmp-btn-next'); 
+			controls.cPrev 		= controls.wrapper.find('.slmp-btn-prev'); 
 			
 			$map.after(controls.wrapper);
 
 			controls.wrapper.addClass('pause');
 
-			controls.wrapper.on("click", ".slmp-c", function(e){
+			controls.wrapper.on("click", ".slmp-btn", function(e){
 				e.preventDefault();
 				var action = $(this).attr('data-action');
 
