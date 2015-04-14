@@ -5,6 +5,12 @@
   background-color: #eeeeee;
   margin-bottom: 40px;
 }
+#slidemap-horizontal {
+  background-color: #6B88FF;
+}
+#slidemap-3d {
+  background-color: #0088EE;
+}
 #slidemap-3d .slmp-slide {
   height: 320px;
 }
@@ -25,4 +31,14 @@
 }
 #slidemap-captions .title {
   margin-left: 15px;
+}
+#slidemap-callbacks {
+  background-color: #6B88FF;
+  margin-bottom: 10px;
+}
+#slidemap-callbacks .slmp-controls {
+  bottom: -25px;
+}
+#slidemap-callbacks-console {
+  height: 140px;
 }

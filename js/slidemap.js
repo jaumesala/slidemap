@@ -17,8 +17,17 @@
 			offsetY 		: 0,
 			showControls 	: false,
 			controls 		: '<div class="slmp-controls"><a data-action="prev" class="slmp-btn slmp-btn-prev" href="#">←</a><a data-action="play-pause" class="slmp-btn slmp-btn-play-pause" href="#"><span class="play">►</span><span class="pause">■</span></a><a data-action="next" class="slmp-btn slmp-btn-next" href="#">→</a></div>',
-			animSpeed 		: 4000, 	// delay between transitions
-			automatic 		: false, 	// enable/disable automatic slide rotation
+			animSpeed 		: 4000,
+			automatic		: false,
+
+			onMoveToArea 	: function(){},
+			onAreaClicked 	: function(){},
+			onControlNext 	: function(){},
+			onControlPrev 	: function(){},
+			onControlPlay 	: function(){},
+			onControlPause 	: function(){},
+			
+
 		};
 
 		// create settings from defaults and user options
@@ -85,7 +94,7 @@
 			$areas.each(function(){
 				
 				// get coords from data-coords attribute
-				var coords = $(this).data("coords").split(',');
+				var coords = getCoords(this);
 				
 				// set the css position of the element
 				$(this).css({
@@ -102,17 +111,32 @@
 				
 				e.preventDefault();
 				
-				var coords = $(this).data("coords").split(',');
+				settings.onAreaClicked.call(this);
 				
-				setActiveArea(this);
-				
-				// trigger actions
-				if(settings.showShadow) moveShadow(coords);
-				moveImage(coords);
-				toggleCaptions($areas.index($(this)));
+				moveToArea(this);
+
+				setAnimation(false);
 
 			});
 
+		};
+
+		var moveToArea = function(area) {
+			
+			setActiveArea(area);
+			
+			var coords = getCoords(area);
+			
+			if(settings.showShadow) moveShadow(coords);
+			
+			moveImage(coords);
+			
+			toggleCaptions($areas.index($(area)));
+
+		};
+
+		var getCoords = function(elem) {
+			return $(elem).data("coords").split(',');
 		};
 
 		var getActiveArea = function() {
@@ -151,7 +175,7 @@
 			var activeArea = getActiveArea();
 
 			if(activeArea){
-				moveShadow(activeArea.data('coords').split(','));
+				moveShadow(getCoords(activeArea));
 			}
 		};
 
@@ -160,9 +184,9 @@
 			if(settings.useMaskShadow){
 				
 				var top 	= parseInt(coords[1]),
-				right 	= parseInt(coords[0])+parseInt(coords[2]),
-				bottom 	= parseInt(coords[1])+parseInt(coords[3]),
-				left 	= parseInt(coords[0]);
+					right 	= parseInt(coords[0])+parseInt(coords[2]),
+					bottom 	= parseInt(coords[1])+parseInt(coords[3]),
+					left 	= parseInt(coords[0]);
 			
 				$mask.css('clip', 'rect('+top+'px, '+right+'px, '+bottom+'px, '+left+'px)');
 
@@ -233,7 +257,7 @@
 
 				var activeArea 	= getActiveArea();
 				if(activeArea){
-					moveImage(activeArea.data('coords').split(','));
+					moveImage(getCoords(activeArea));
 				}
 
 			}).each(function () {
@@ -249,7 +273,7 @@
 			clog("start", "moveImage");
 			clog("coordsArea");
 			clog(coordsArea);
-			
+
 			var coordsTarget = [
 				Math.round((grid.image.scaled.width * coordsArea[0]) / grid.map.width),
 				Math.round((grid.image.scaled.height * coordsArea[1]) / grid.map.height),
@@ -260,6 +284,8 @@
 
 			clog("coordsTarget");
 			clog(coordsTarget);
+
+			settings.onMoveToArea.call( $image, coordsArea, coordsTarget );
 
 			var targetX = -Math.abs(coordsTarget[0]);
 			var targetY = -Math.abs(coordsTarget[1]);
@@ -345,58 +371,112 @@
 				var action = $(this).attr('data-action');
 
 				if(action === 'next'){
+					
 					clog('Control Next clicked');
 
-					var $activeArea = $areas.filter('.active').first();
+					var $activeArea = getActiveArea();
+
+					settings.onControlNext.call();
 					
+					setAnimation(false);
+
 					if($activeArea.next('.slmp-area').length){
-						$activeArea.next('.slmp-area').trigger('click');
+					
+						moveToArea($activeArea.next('.slmp-area'));
+
 					} else {
-						$areas.first().trigger('click');
+					
+						moveToArea($areas.first());
+
 					}
 				}
 
 				if(action === 'prev'){
+					
 					clog('Control Prev clicked');
 
-					var $activeArea = $areas.filter('.active').first();
+					var $activeArea = getActiveArea();
 					
+					settings.onControlPrev.call();
+
+					setAnimation(false);
+
 					if($activeArea.prev('.slmp-area').length){
-						$activeArea.prev('.slmp-area').trigger('click');
+					
+						moveToArea($activeArea.prev('.slmp-area'));
+
 					} else {
-						$areas.last().trigger('click');
+					
+						moveToArea($areas.last());
+
 					}
 					
 				}
 
 				if(action === 'play-pause'){
+					
 					clog('Control playPause clicked');
 
 					if(controls.wrapper.hasClass('play')){
+						
 						//stop
+						
+						settings.onControlPause.call();
+
 						setAnimation(false);
+
 					} else {
+						
 						//start
+						
+						settings.onControlPlay.call();
+
 						setAnimation(true);
+
 					}
+
 				}
 
 			});
 
 			if(settings.automatic){
+				
 				setAnimation(true);
+			
 			}
 
 		};
 
 		var setAnimation = function(start) {
-			controls.wrapper.toggleClass('play pause');
-						
+			
 			if(start){
+				
+				if(settings.showControls){
+					controls.wrapper.addClass('play').removeClass('pause');
+				}
+			
 				timer = setInterval(function(){	
-					controls.cNext.trigger('click');
+
+					var $activeArea = getActiveArea();
+
+					if($activeArea.next('.slmp-area').length){
+					
+						moveToArea($activeArea.next('.slmp-area'));
+
+					} else {
+					
+						moveToArea($areas.first());
+
+					}
+
 				}, settings.animSpeed);
+
 			} else {
+				
+				if(settings.showControls){
+					controls.wrapper.addClass('pause').removeClass('play');
+				}
+			
 				clearInterval(timer);
 			}
 			
