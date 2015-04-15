@@ -1,37 +1,38 @@
 {
-  "name": "slidemap",
-  "version": "0.1.0",
-  "homepage": "https://github.com/jaumesala/slidemap",
-  "authors": [
-    "Jaume Sala <jaumesala@gmail.com>"
-  ],
-  "description": "A jQuery plugin to create amazing 3-axis image maps.",
-  "main": [ 
-    "./js/slidemap.js", 
-    "./css/slidemap.css" 
-  ],
-  "devDependencies": {
-    "bootstrap": "~3.3",
-    "jquery": "~1.11",
-    "qunit": "~1.10"
-  },
-  "moduleType": [
-    "globals"
-  ],
-  "keywords": [
-    "slide",
-    "map",
-    "zoom",
-    "jQuery",
-    "3d",
-    "2d"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ]
+	"name": "slidemap",
+	"version": "0.1.0",
+	"homepage": "https://github.com/jaumesala/slidemap",
+	"authors": [
+		"Jaume Sala <jaumesala@gmail.com>"
+	],
+	"description": "A jQuery plugin to create amazing 3-axis image maps.",
+	"main": [ 
+		"./dist/js/slidemap.min.js", 
+		"./dist/css/slidemap.min.css" 
+	],
+	"devDependencies": {
+		"bootstrap": "~3.3"
+	},
+	"dependencies": {
+		"jquery": "~1.11"
+	},
+	"moduleType": [
+		"globals"
+	],
+	"keywords": [
+		"slide",
+		"map",
+		"zoom",
+		"jQuery",
+		"3d",
+		"2d"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	]
 }
