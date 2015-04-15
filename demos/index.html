@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+		<meta name="viewport" content="width=960">
+		<title>Demos - SlideMap</title>
+		<meta name="description" content="Some demos of slidemap">
+		
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="../dist/css/slidemap.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		
+		<header id="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<div class="page-header">
+							<h1>SlideMap demos <small>fixed width examples</small></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		
+		<body id="body">
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>Horizontal slidemap</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							A very simple example. Click the areas on the map to move the slide.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<div id="slidemap-horizontal" class="slmp-slidemap">
+							<div class="slmp-slide">
+								<img class="slmp-image" src="img/super-mario-bros-1-1-simple.png"  width="3392" height="232" />
+							</div>
+							<div class="slmp-map">
+								<img class="slmp-thumbnail" src="img/super-mario-bros-1-1-simple.png" width="3392" height="232">
+
+								<a data-coords="0,0,230,64,0" class="slmp-area active" href="#"></a>
+	 							<a data-coords="229,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="458,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="687,0,253,64,0" class="slmp-area" href="#"></a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>3D slidemap</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							More elavorated example. Multiple areas with diferent horizonta and vertical position. Plus, to add more focus on the region, we can specify a zoom with the fifth parameter of the <code>data-coords</code>. The unit of this value are pixels and a positive value means zoom in while a negative value means zoom out.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<div id="slidemap-3d" class="slmp-slidemap">
+							<div class="slmp-slide">
+								<img class="slmp-image" src="img/sonic-the-hedgehog-ghz-1.png"  width="10240" height="1280" />
+							</div>
+							<div class="slmp-map">
+								<img class="slmp-thumbnail" src="img/sonic-the-hedgehog-ghz-1.png" width="310240" height="1280">
+
+								<a data-coords="0,45,110,50,600" class="slmp-area active" href="#"></a>
+								<a data-coords="109,45,110,50,600" class="slmp-area" href="#"></a>
+								<a data-coords="218,45,100,50,600" class="slmp-area" href="#"></a>
+								
+								<a data-coords="317,30,100,65,500" class="slmp-area" href="#"></a>
+								
+								<a data-coords="416,15,120,74,500" class="slmp-area" href="#"></a>
+								
+								<a data-coords="535,0,130,64,470" class="slmp-area" href="#"></a>
+								<a data-coords="535,63,100,45,470" class="slmp-area" href="#"></a>
+								
+								<a data-coords="634,63,100,45,450" class="slmp-area" href="#"></a>
+								
+								<a data-coords="733,63,180,45,450" class="slmp-area" href="#"></a>
+								
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>Slidemap with captions</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							You can also add a caption to each area. A caption is a div element where you can place whatever you want to show for an specific action. 
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						
+						<div id="slidemap-captions" class="slmp-slidemap clearfix">
+							<div class="custom-left">
+								
+								<div class="slmp-map">
+									<img class="slmp-thumbnail" src="img/gtav-map-satellite.jpg" width="6100" height="8100">
+									
+									<a data-coords="100,510,80,80,830" class="slmp-area active" href="#"></a>
+									<a data-coords="179,496,18,18,910" class="slmp-area" href="#"></a>
+									<a data-coords="195,515,90,70,830" class="slmp-area" href="#"></a>
+									<a data-coords="180,430,40,40,900" class="slmp-area active" href="#"></a>
+									<a data-coords="40,230,110,80,730" class="slmp-area active" href="#"></a>
+									<a data-coords="180,175,150,70,600" class="slmp-area active" href="#"></a>
+
+								</div>	
+								
+								<p class="title h3 text-primary">Grand Theft Auto <br /><small>San Andreas</small></p>
+								
+							</div>
+							<div class="custom-right">
+								
+								<div class="slmp-slide">
+									<img class="slmp-image" src="img/gtav-map-satellite.jpg"  width="6100" height="8100" />
+									<div class="slmp-caption active">
+										<div class="well">
+											Los Santos airport
+										</div>
+									</div>
+									<div class="slmp-caption">
+										<div class="well">
+											La Puerta
+										</div>
+									</div>
+									<div class="slmp-caption">
+										<div class="well">
+											Port of South Los Santos
+										</div>
+									</div>
+									<div class="slmp-caption">
+										<div class="well">
+											Downtown
+										</div>
+									</div>
+									<div class="slmp-caption">
+										<div class="well">
+											Lago Zancuda
+										</div>
+									</div>
+									<div class="slmp-caption">
+										<div class="well">
+											Alamo Sea
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-24">
+						<h2>Slidemap with Callbacks</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<p>
+							Here's an example to show the capabilities of the callbacks.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-24">
+						<div id="slidemap-callbacks" class="slmp-slidemap">
+							<div class="slmp-slide">
+								<img class="slmp-image" src="img/super-mario-bros-1-1-simple.png"  width="3392" height="232" />
+							</div>
+							<div class="slmp-map">
+								<img class="slmp-thumbnail" src="img/super-mario-bros-1-1-simple.png" width="3392" height="232">
+
+								<a data-coords="0,0,230,64,0" class="slmp-area active" href="#"></a>
+	 							<a data-coords="229,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="458,0,230,64,0" class="slmp-area" href="#"></a>
+	 							<a data-coords="687,0,253,64,0" class="slmp-area" href="#"></a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-xs-offset-12">
+						<textarea class="form-control" id="slidemap-callbacks-console"></textarea>
+						<!-- <pre id="slidemap-callbacks-console"></pre> -->
+					</12>
+				</div>
+
+			</div>
+
+		</body>
+		
+		<footer id="footer">
+			<div class="container">
+				<div class="col-xs-24">
+					<hr />
+				</div>
+				<div class="col-xs-24">
+					<div class="text-center">Jaume Sala</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="../js/slidemap.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

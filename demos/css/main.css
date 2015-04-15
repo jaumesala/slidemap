@@ -1,0 +1,57 @@
+/*!
+ * Slidemap jQuery plug-in v.0.1.0
+ *
+ * https://github.com/jaumesala/slidemap
+ *
+ * Authored by Jaume Sala
+ * http://jaumesala.net
+ *
+ * Copyright 2015, Jaume Sala
+ * License: MIT License (MIT)
+ * http://opensource.org/licenses/MIT
+ *
+ */
+#footer {
+  padding: 40px 0;
+}
+.slmp-slidemap {
+  background-color: #eeeeee;
+  margin-bottom: 40px;
+}
+#slidemap-horizontal {
+  background-color: #6B88FF;
+}
+#slidemap-3d {
+  background-color: #0088EE;
+}
+#slidemap-3d .slmp-slide {
+  height: 320px;
+}
+#slidemap-captions .custom-left {
+  float: left;
+  width: 48%;
+}
+#slidemap-captions .custom-right {
+  float: left;
+  width: 52%;
+}
+#slidemap-captions .slmp-slide {
+  height: 720px;
+}
+#slidemap-captions .slmp-controls {
+  bottom: 50px;
+  left: 15px;
+}
+#slidemap-captions .title {
+  margin-left: 15px;
+}
+#slidemap-callbacks {
+  background-color: #6B88FF;
+  margin-bottom: 10px;
+}
+#slidemap-callbacks .slmp-controls {
+  bottom: -25px;
+}
+#slidemap-callbacks-console {
+  height: 140px;
+}
